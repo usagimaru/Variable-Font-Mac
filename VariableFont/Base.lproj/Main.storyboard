@@ -716,7 +716,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="480" height="470"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <textView importsGraphics="NO" richText="NO" verticallyResizable="YES" allowsUndo="YES" smartInsertDelete="YES" id="UrI-NO-gyh">
+                                        <textView importsGraphics="NO" verticallyResizable="YES" allowsUndo="YES" smartInsertDelete="YES" id="UrI-NO-gyh">
                                             <rect key="frame" x="0.0" y="0.0" width="480" height="470"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>

@@ -62,7 +62,7 @@ class ViewController: NSViewController {
 		initFont()
 		self.fontAxes = getFontVariationAxes() ?? [:]
 		
-		self.textView.string = "Variable fonts works on macOS native apps."
+		self.textView.string = "Variable font on macOS"
 	}
 
 	override var representedObject: Any? {
@@ -95,12 +95,16 @@ class ViewController: NSViewController {
 	// MARK: -
 	
 	private func initFont() {
+		// [Select any font to apply]
 		//let fontName = ".SFNSDisplay"
 		//let fontName = ".SFNSRounded-Regular"
 		//let fontName = "Montserrat"
 		//let fontName = "Recursive Beta 1.022"
 		//let fontName = "ヒラギノ角ゴシック"
+		//let fontName = "SFPro-Regular"
 		//self.font = NSFont(name: fontName, size: self.fontSize)
+		
+		// [...or the system font]
 		self.font = NSFont.systemFont(ofSize: self.fontSize)
 		
 		self.fontAxes.removeAll()
