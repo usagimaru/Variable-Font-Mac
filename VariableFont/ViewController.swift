@@ -80,6 +80,8 @@ class ViewController: NSViewController {
 	
 	override func viewDidAppear() {
 		super.viewDidAppear()
+		
+		self.view.window?.title = self.font!.displayName ?? self.font!.familyName ?? self.font!.fontName
 	}
 	
 	override func viewWillDisappear() {
@@ -94,13 +96,16 @@ class ViewController: NSViewController {
 	// MARK: -
 	
 	private func initFont() {
+		// [Select any font to apply]
 		//let fontName = ".SFNSDisplay"
 		//let fontName = ".SFNSRounded-Regular"
 		//let fontName = "Montserrat"
 		//let fontName = "Recursive Beta 1.022"
 		//let fontName = "ヒラギノ角ゴシック"
+		//let fontName = "SFPro-Regular"
 		//self.font = NSFont(name: fontName, size: self.fontSize)
 		
+		// [...or the system font]
 		self.font = NSFont.systemFont(ofSize: self.fontSize)
 		
 		self.fontAxes.removeAll()
@@ -129,10 +134,10 @@ class ViewController: NSViewController {
 		// フォントサイズ
 		makeAxisSliderView("Size", title: "Size", min: 1.0, max: 200.0, currentValue: self.fontSize)
 		
-		
+		// 指定フォントから有効な Axis を判定して、パラメータ調整スライダを作成
 		if let axes = CTFontCopyVariationAxes(font as CTFont) as? [[String : Any]] {
 			var fontAxes = [String : FontAxis]()
-
+			
 			for axis in axes {
 				guard let axisIdentifier = axis[kCTFontVariationAxisIdentifierKey as String] as? Int else {
 					continue

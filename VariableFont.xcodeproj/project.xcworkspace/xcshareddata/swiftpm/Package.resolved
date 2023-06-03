@@ -1,0 +1,14 @@
+{
+  "pins" : [
+    {
+      "identity" : "nibinstantiater",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/usagimaru/NibInstantiater",
+      "state" : {
+        "branch" : "main",
+        "revision" : "cc9e9a3e1d2c1f1c91bbfe7330809f7f2d3667d5"
+      }
+    }
+  ],
+  "version" : 2
+}
