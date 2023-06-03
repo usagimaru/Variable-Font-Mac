@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -16,7 +16,8 @@
 		51248AE02379E0BF007FE5D3 /* FontAxisOnOffParameterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51248ADF2379E0BF007FE5D3 /* FontAxisOnOffParameterView.swift */; };
 		51248AE22379E0CA007FE5D3 /* FontAxisSliderParameterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 51248AE12379E0CA007FE5D3 /* FontAxisSliderParameterView.xib */; };
 		51248AE42379E0D6007FE5D3 /* FontAxisOnOffParameterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 51248AE32379E0D6007FE5D3 /* FontAxisOnOffParameterView.xib */; };
-		51248AE62379E6AF007FE5D3 /* NibInstantiatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51248AE52379E6AF007FE5D3 /* NibInstantiatable.swift */; };
+		519B05212A2BC81F006CA6A1 /* NSFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 519B05202A2BC81F006CA6A1 /* NSFont.swift */; };
+		519B05242A2BC83E006CA6A1 /* NibInstantiater in Frameworks */ = {isa = PBXBuildFile; productRef = 519B05232A2BC83E006CA6A1 /* NibInstantiater */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,7 +33,7 @@
 		51248ADF2379E0BF007FE5D3 /* FontAxisOnOffParameterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontAxisOnOffParameterView.swift; sourceTree = "<group>"; };
 		51248AE12379E0CA007FE5D3 /* FontAxisSliderParameterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FontAxisSliderParameterView.xib; sourceTree = "<group>"; };
 		51248AE32379E0D6007FE5D3 /* FontAxisOnOffParameterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FontAxisOnOffParameterView.xib; sourceTree = "<group>"; };
-		51248AE52379E6AF007FE5D3 /* NibInstantiatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NibInstantiatable.swift; sourceTree = "<group>"; };
+		519B05202A2BC81F006CA6A1 /* NSFont.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSFont.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -40,6 +41,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				519B05242A2BC83E006CA6A1 /* NibInstantiater in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -73,7 +75,7 @@
 				51248AE12379E0CA007FE5D3 /* FontAxisSliderParameterView.xib */,
 				51248ADF2379E0BF007FE5D3 /* FontAxisOnOffParameterView.swift */,
 				51248AE32379E0D6007FE5D3 /* FontAxisOnOffParameterView.xib */,
-				51248AE52379E6AF007FE5D3 /* NibInstantiatable.swift */,
+				519B05202A2BC81F006CA6A1 /* NSFont.swift */,
 				51248ACE2379C2E8007FE5D3 /* Info.plist */,
 				51248ADB2379DF3F007FE5D3 /* fonts */,
 				51248ACF2379C2E8007FE5D3 /* VariableFont.entitlements */,
@@ -97,6 +99,9 @@
 			dependencies = (
 			);
 			name = VariableFont;
+			packageProductDependencies = (
+				519B05232A2BC83E006CA6A1 /* NibInstantiater */,
+			);
 			productName = VariableFont;
 			productReference = 51248AC22379C2E6007FE5D3 /* VariableFont.app */;
 			productType = "com.apple.product-type.application";
@@ -123,8 +128,12 @@
 			knownRegions = (
 				en,
 				Base,
+				ja,
 			);
 			mainGroup = 51248AB92379C2E6007FE5D3;
+			packageReferences = (
+				519B05222A2BC83E006CA6A1 /* XCRemoteSwiftPackageReference "NibInstantiater" */,
+			);
 			productRefGroup = 51248AC32379C2E6007FE5D3 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -156,9 +165,9 @@
 			files = (
 				51248AC82379C2E6007FE5D3 /* ViewController.swift in Sources */,
 				51248AC62379C2E6007FE5D3 /* AppDelegate.swift in Sources */,
-				51248AE62379E6AF007FE5D3 /* NibInstantiatable.swift in Sources */,
 				51248AE02379E0BF007FE5D3 /* FontAxisOnOffParameterView.swift in Sources */,
 				51248ADE2379E0AD007FE5D3 /* FontAxisSliderParameterView.swift in Sources */,
+				519B05212A2BC81F006CA6A1 /* NSFont.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -180,6 +189,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -240,6 +250,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -301,7 +312,8 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.interactionmania.VariableFont;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				PRODUCT_BUNDLE_IDENTIFIER = jp.usagimaru.VariableFont;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 			};
@@ -319,7 +331,8 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.interactionmania.VariableFont;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				PRODUCT_BUNDLE_IDENTIFIER = jp.usagimaru.VariableFont;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 			};
@@ -347,6 +360,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		519B05222A2BC83E006CA6A1 /* XCRemoteSwiftPackageReference "NibInstantiater" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/usagimaru/NibInstantiater";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		519B05232A2BC83E006CA6A1 /* NibInstantiater */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 519B05222A2BC83E006CA6A1 /* XCRemoteSwiftPackageReference "NibInstantiater" */;
+			productName = NibInstantiater;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 51248ABA2379C2E6007FE5D3 /* Project object */;
 }

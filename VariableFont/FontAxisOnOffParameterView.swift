@@ -7,6 +7,7 @@
 //
 
 import Cocoa
+import NibInstantiater
 
 class FontAxisOnOffParameterView: NSView, NibInstantiatable {
 	@IBOutlet weak var titleLabel: NSTextField!

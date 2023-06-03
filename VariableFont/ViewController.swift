@@ -8,6 +8,7 @@
 
 import Cocoa
 import CoreText
+import NibInstantiater
 
 class ViewController: NSViewController {
 	
@@ -62,7 +63,7 @@ class ViewController: NSViewController {
 		initFont()
 		self.fontAxes = getFontVariationAxes() ?? [:]
 		
-		self.textView.string = "Variable fonts works on macOS native apps."
+		self.textView.string = "Variable font works on macOS native code."
 	}
 
 	override var representedObject: Any? {
@@ -94,15 +95,25 @@ class ViewController: NSViewController {
 	
 	private func initFont() {
 		//let fontName = ".SFNSDisplay"
-		let fontName = ".SFNSRounded-Regular"
+		//let fontName = ".SFNSRounded-Regular"
 		//let fontName = "Montserrat"
 		//let fontName = "Recursive Beta 1.022"
 		//let fontName = "ヒラギノ角ゴシック"
-		self.font = NSFont(name: fontName, size: self.fontSize)
+		//self.font = NSFont(name: fontName, size: self.fontSize)
 		
-		//self.font = NSFont.systemFont(ofSize: self.fontSize)
+		self.font = NSFont.systemFont(ofSize: self.fontSize)
 		
 		self.fontAxes.removeAll()
+		
+		dumpFontTypographicFeatures()
+	}
+	
+	private func dumpFontTypographicFeatures() {
+		guard let font = self.font else {
+			return
+		}
+		
+		font.fontDescriptor.printLocalizedAttributes()
 	}
 	
 	private func getFontVariationAxes() -> [String : FontAxis]? {
@@ -160,7 +171,7 @@ class ViewController: NSViewController {
 	}
 	
 	private func makeAxisSliderView(_ axisTag: String, title: String, min: CGFloat, max: CGFloat, currentValue: CGFloat) {
-		let axisSliderView = FontAxisSliderParameterView.fromNib()
+		let axisSliderView = FontAxisSliderParameterView.loadUnownedNib()
 		axisSliderView.axisTag = axisTag
 		axisSliderView.titleLabel.stringValue = title
 		axisSliderView.slider.minValue = Double(min)
