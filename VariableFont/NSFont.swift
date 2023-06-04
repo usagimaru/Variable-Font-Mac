@@ -37,6 +37,17 @@ extension NSFontDescriptor {
 				NSFontDescriptor.FeatureKey.selectorIdentifier : selector
 			]
 		}
+		
+		
+		// More layout info: SFNTLayoutTypes.h
+		
+		static func caseSensitiveLayout() -> Self {
+			.init(type: kCaseSensitiveLayoutType, selector: kCaseSensitiveLayoutOnSelector)
+		}
+		
+		static func slashedZeroLayout() -> Self {
+			.init(type: kTypographicExtrasType, selector: kSlashedZeroOnSelector)
+		}
 	}
 	
 	func addTypographicFeatures(_ features: [TypographicFeature]) -> NSFontDescriptor {
@@ -137,14 +148,4 @@ extension NSFontDescriptor {
 		}
 	}
 	
-	
-	// MARK: -
-	
-	// More info: SFNTLayoutTypes.h
-		
-	func addCapitalFormsFeature() -> NSFontDescriptor {
-		addTypographicFeatures([
-			.init(type: kCaseSensitiveLayoutType, selector: kCaseSensitiveLayoutOnSelector)
-		])
-	}	
 }
