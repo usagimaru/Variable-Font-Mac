@@ -52,12 +52,6 @@ extension NSFontDescriptor {
 		return newDescriptor
 	}
 	
-	func addCapitalFormsFeature() -> NSFontDescriptor {
-		addTypographicFeatures([
-			TypographicFeature(type: kCaseSensitiveLayoutType, selector: kCaseSensitiveLayoutOnSelector)
-		])
-	}
-	
 	func localizedAttributes(_ lang: String? = nil) -> LocalizedAttributeArray {
 		// Unmanaged<T>の扱いについて
 		// Core Foundation の値は Swift だと Unmanaged で扱われる
@@ -75,53 +69,57 @@ extension NSFontDescriptor {
 	}
 	
 	func printLocalizedAttributes() {
-		// More info: SFNTLayoutTypes.h
-		
 		let attributeArray = localizedAttributes()
 		for attributes in attributeArray {
 			if let featureTypeIdentifier = attributes[kCTFontFeatureTypeIdentifierKey] as? Int {
-				print("[kCTFontFeatureTypeIdentifierKey] | Feature Type ID: \(featureTypeIdentifier)")
+				print("Feature Type ID: \(featureTypeIdentifier)")
+			}
+			if let featureTypeNameID = attributes["CTFeatureTypeNameID" as CFString] as? Int {
+				print("Feature Type Name ID: \(featureTypeNameID)")
 			}
 			if let featureTypeName = attributes[kCTFontFeatureTypeNameKey] as? String {
-				print("[kCTFontFeatureTypeNameKey] | Feature Type Name: \(featureTypeName)")
+				print("Feature Type Name: \(featureTypeName)")
 			}
 			
 			if let openTypeFeatureTag = attributes[kCTFontOpenTypeFeatureTag] as? String {
-				print("[kCTFontOpenTypeFeatureTag] | OpenType Feature Tag: \(openTypeFeatureTag)")
-			}
-			if let openTypeFeatureValue = attributes[kCTFontOpenTypeFeatureValue] {
-				print("[kCTFontOpenTypeFeatureValue] | OpenType Feature Value: \(openTypeFeatureValue)")
+				print("OpenType Feature Tag: \(openTypeFeatureTag)")
 			}
 			
 			if let featureTypeExclusive = attributes[kCTFontFeatureTypeExclusiveKey] as? Bool, featureTypeExclusive == true {
-				print("[kCTFontFeatureTypeExclusiveKey] | Is exclusive: TRUE")
+				print("Is exclusive: YES")
 			}
 			else {
-				print("[kCTFontFeatureTypeExclusiveKey] | Is exclusive: FALSE")
+				print("Is exclusive: NO")
 			}
 			
 			if let sampleText = attributes[kCTFontFeatureSampleTextKey] as? String {
-				print("[kCTFontFeatureSampleTextKey] | Sample: \(sampleText)")
+				print("Sample: \(sampleText)")
 			}
 			
 			if let featureTypeSelectors = attributes[kCTFontFeatureTypeSelectorsKey] as? LocalizedAttributeArray {
-				print("[kCTFontFeatureTypeSelectorsKey] | Feature selectors:")
+				print("Feature selectors:")
 				
 				for selector in featureTypeSelectors {
 					if let selectorID = selector[kCTFontFeatureSelectorIdentifierKey] as? Int {
-						print("  [kCTFontFeatureSelectorIdentifierKey] | Selector ID: \(selectorID)")
+						print("  Selector ID: \(selectorID)")
 					}
 					if let selectorNameID = selector["CTFeatureSelectorNameID" as CFString] as? Int {
-						print("  [CTFeatureSelectorNameID] | Selector Name ID: \(selectorNameID)")
+						print("  Selector Name ID: \(selectorNameID)")
 					}
 					if let selectorName = selector[kCTFontFeatureSelectorNameKey] as? String {
-						print("  [kCTFontFeatureSelectorNameKey] | Selector Name: \(selectorName)")
+						print("  Selector Name: \(selectorName)")
+					}
+					if let openTypeFeatureTag = selector[kCTFontOpenTypeFeatureTag] as? String {
+						print("  OpenType Feature Tag: \(openTypeFeatureTag)")
+					}
+					if let openTypeFeatureValue = selector[kCTFontOpenTypeFeatureValue] as? Int {
+						print("  OpenType Feature Value: \(openTypeFeatureValue)")
 					}
 					if let isDefaultSelector = selector[kCTFontFeatureSelectorDefaultKey] as? Bool, isDefaultSelector == true {
-						print("  [kCTFontFeatureSelectorDefaultKey] | Is default: TRUE")
+						print("  Is default: YES")
 					}
 					else {
-						print("  [kCTFontFeatureSelectorDefaultKey] | Is default: FALSE")
+						print("  Is default: NO")
 					}
 					
 					print("\n")
@@ -129,11 +127,24 @@ extension NSFontDescriptor {
 			}
 			
 			if let tooltip = attributes[kCTFontFeatureTooltipTextKey] as? String {
-				print("[kCTFontFeatureTooltipTextKey] | Tooltip: \(tooltip)")
+				print("Tooltip: \(tooltip)")
 			}
 			
 			print("---------------------------")
+			
+			// kCTFontFeatureSelectorSettingKey (Boolean) は CTFontDescriptorCreateCopyWithAttributes() で使うもの？
+			// https://developer.apple.com/documentation/coretext/kctfontfeatureselectorsettingkey
 		}
 	}
 	
+	
+	// MARK: -
+	
+	// More info: SFNTLayoutTypes.h
+		
+	func addCapitalFormsFeature() -> NSFontDescriptor {
+		addTypographicFeatures([
+			.init(type: kCaseSensitiveLayoutType, selector: kCaseSensitiveLayoutOnSelector)
+		])
+	}	
 }
