@@ -1,6 +1,6 @@
 # Variable Font Mac
 
-An implementation of Variable Fonts that works perfectly on macOS using Core Text.
+An implementation of a variable font feature that works on macOS using Core Text.
 
 ![screenshot](./screenshot.gif)
 
