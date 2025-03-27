@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="23504" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="20037"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="23504"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -711,17 +711,17 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <scrollView borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" translatesAutoresizingMaskIntoConstraints="NO" id="beL-BR-5cx">
-                                <rect key="frame" x="0.0" y="16" width="480" height="470"/>
+                                <rect key="frame" x="0.0" y="52" width="480" height="434"/>
                                 <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="x6b-CX-IaQ">
-                                    <rect key="frame" x="0.0" y="0.0" width="480" height="470"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="480" height="434"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <textView importsGraphics="NO" verticallyResizable="YES" allowsUndo="YES" smartInsertDelete="YES" id="UrI-NO-gyh">
-                                            <rect key="frame" x="0.0" y="0.0" width="480" height="470"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="480" height="434"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                            <size key="minSize" width="480" height="470"/>
+                                            <size key="minSize" width="480" height="434"/>
                                             <size key="maxSize" width="498" height="10000000"/>
                                             <color key="insertionPointColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                         </textView>
@@ -732,25 +732,46 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="b49-r7-t6H">
-                                    <rect key="frame" x="464" y="0.0" width="16" height="470"/>
+                                    <rect key="frame" x="464" y="0.0" width="16" height="434"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
                             <stackView distribution="equalSpacing" orientation="vertical" alignment="leading" spacing="4" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xhw-jR-u8m">
                                 <rect key="frame" x="8" y="8" width="464" height="0.0"/>
                             </stackView>
+                            <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="rq3-Gl-BeN">
+                                <rect key="frame" x="17" y="16" width="78" height="25"/>
+                                <popUpButtonCell key="cell" type="push" title="Item 1" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="lrV-Nk-0AW" id="494-OI-UtX">
+                                    <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="menu"/>
+                                    <menu key="menu" id="eOc-fG-fq9">
+                                        <items>
+                                            <menuItem title="Item 1" state="on" id="lrV-Nk-0AW"/>
+                                            <menuItem title="Item 2" id="95q-4n-zyY"/>
+                                            <menuItem title="Item 3" id="BZH-Zp-GZO"/>
+                                        </items>
+                                    </menu>
+                                </popUpButtonCell>
+                                <connections>
+                                    <action selector="selectFont:" target="XfG-lQ-9wD" id="Prf-kn-msQ"/>
+                                </connections>
+                            </popUpButton>
                         </subviews>
                         <constraints>
                             <constraint firstItem="xhw-jR-u8m" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="8" id="37q-0A-HdP"/>
+                            <constraint firstItem="rq3-Gl-BeN" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="DY8-br-nsl"/>
                             <constraint firstAttribute="trailing" secondItem="xhw-jR-u8m" secondAttribute="trailing" constant="8" id="Jar-TV-buY"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="rq3-Gl-BeN" secondAttribute="trailing" constant="20" id="Kdn-99-APv"/>
                             <constraint firstAttribute="trailing" secondItem="beL-BR-5cx" secondAttribute="trailing" id="S78-8p-hu7"/>
                             <constraint firstItem="beL-BR-5cx" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" id="SDI-sC-fKC"/>
+                            <constraint firstItem="rq3-Gl-BeN" firstAttribute="top" secondItem="beL-BR-5cx" secondAttribute="bottom" constant="12" id="UaJ-Sl-49O"/>
+                            <constraint firstItem="xhw-jR-u8m" firstAttribute="top" secondItem="rq3-Gl-BeN" secondAttribute="bottom" constant="12" id="Wi7-bc-iFx"/>
                             <constraint firstAttribute="bottom" secondItem="xhw-jR-u8m" secondAttribute="bottom" constant="8" id="Xwm-9M-1sz"/>
-                            <constraint firstItem="xhw-jR-u8m" firstAttribute="top" secondItem="beL-BR-5cx" secondAttribute="bottom" constant="8" id="YZZ-BR-Lx2"/>
                             <constraint firstItem="beL-BR-5cx" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="nPX-uf-0iZ"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="fontSelector" destination="rq3-Gl-BeN" id="BMD-p5-3ie"/>
                         <outlet property="optionPanel" destination="xhw-jR-u8m" id="poa-Cf-Iar"/>
                         <outlet property="textView" destination="UrI-NO-gyh" id="S5Y-1b-xbj"/>
                     </connections>

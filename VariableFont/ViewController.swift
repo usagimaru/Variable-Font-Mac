@@ -13,6 +13,7 @@ import NibInstantiater
 class ViewController: NSViewController {
 	
 	@IBOutlet var textView: NSTextView!
+	@IBOutlet var fontSelector: NSPopUpButton!
 	@IBOutlet var optionPanel: NSStackView!
 	
 	struct VariationAxisTags {
@@ -47,7 +48,7 @@ class ViewController: NSViewController {
 	
 	private var font: NSFont? {
 		didSet {
-			self.textView.font = font
+			self.textView.font = font ?? NSFont.systemFont(ofSize: fontSize)
 		}
 	}
 	
@@ -59,11 +60,19 @@ class ViewController: NSViewController {
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
-
-		initFont()
-		self.fontAxes = getFontVariationAxes() ?? [:]
 		
-		self.textView.string = "Variable font works on macOS native code."
+		fontSelector.removeAllItems()
+		fontSelector.addItem(withTitle: "SystemFont")
+		fontSelector.addItem(withTitle: "SFPro-Regular")
+		fontSelector.addItem(withTitle: "ヒラギノ角ゴシック")
+		fontSelector.addItem(withTitle: "HiraginoSans")
+		fontSelector.addItem(withTitle: "Montserrat")
+		fontSelector.addItem(withTitle: "Recursive Beta 1.022")
+
+		resetFont()
+		
+		textView.textColor = NSColor.secondaryLabelColor
+		textView.string = "WWDC25"
 	}
 
 	override var representedObject: Any? {
@@ -81,7 +90,7 @@ class ViewController: NSViewController {
 	override func viewDidAppear() {
 		super.viewDidAppear()
 		
-		self.view.window?.title = self.font!.displayName ?? self.font!.familyName ?? self.font!.fontName
+		updateWindowTitle()
 	}
 	
 	override func viewWillDisappear() {
@@ -95,7 +104,11 @@ class ViewController: NSViewController {
 	
 	// MARK: -
 	
-	private func initFont() {
+	private func updateWindowTitle() {
+		view.window?.title = font!.displayName ?? font!.familyName ?? font!.fontName
+	}
+	
+	private func resetFont() {
 		// [Select any font to apply]
 		//let fontName = ".SFNSDisplay"
 		//let fontName = ".SFNSRounded-Regular"
@@ -105,11 +118,17 @@ class ViewController: NSViewController {
 		//let fontName = "SFPro-Regular"
 		//self.font = NSFont(name: fontName, size: self.fontSize)
 		
-		// [...or the system font]
-		self.font = NSFont.systemFont(ofSize: self.fontSize)
+		if let fontName = fontSelector.selectedItem?.title {
+			font = NSFont(name: fontName, size: fontSize)
+		}
+		if font == nil {
+			font = NSFont.systemFont(ofSize: fontSize)
+		}
 		
-		self.fontAxes.removeAll()
+		fontAxes.removeAll()
+		fontAxes = getFontVariationAxes() ?? [:]
 		
+		updateWindowTitle()
 		dumpFontTypographicFeatures()
 	}
 	
@@ -187,6 +206,10 @@ class ViewController: NSViewController {
 		axisSliderView.resetAction = #selector(resetParameter(_:))
 		
 		self.optionPanel.addArrangedSubview(axisSliderView)
+	}
+	
+	@IBAction func selectFont(_ sender: Any) {
+		resetFont()
 	}
 	
 	@objc private func parameterAction(_ sender: FontAxisSliderParameterView) {
